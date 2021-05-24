@@ -2,6 +2,7 @@ package com.training.bugApplication.controller;
 
 import com.training.bugApplication.entity.BugRequest;
 import com.training.bugApplication.service.BugService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ public class BugController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/bug")
+    @ApiOperation(consumes = "application/json", value = "create Bug")
     public void createNewBug(@Valid @RequestBody BugRequest bugRequest) {
         bugService.create(bugRequest);
     }
