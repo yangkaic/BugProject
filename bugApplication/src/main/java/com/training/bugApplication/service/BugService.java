@@ -4,5 +4,5 @@ import com.training.bugApplication.entity.BugRequest;
 
 public interface BugService {
 
-    public void create(BugRequest bugRequest);
+    public void create(BugRequest bugRequest) throws Exception;
 }
