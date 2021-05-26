@@ -1,5 +1,6 @@
 package com.training.bugApplication.service;
 
+import com.training.bugApplication.client.EmailClient;
 import com.training.bugApplication.entity.BugRequest;
 import com.training.bugApplication.repository.BugRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,16 @@ public class BugServiceImpl implements  BugService {
     @Autowired
     BugRepository bugRepository;
 
+    @Autowired
+    EmailClient emailClient;
+
     @Transactional(rollbackOn = Exception.class, dontRollbackOn = {ArithmeticException.class,
             IllegalArgumentException.class})
     public void create(BugRequest bugRequest) throws Exception {
         System.out.println(bugRequest);
         //childMethod(bugRequest);
         bugRepository.save(bugRequest);
+        emailClient.sendEmail(bugRequest);
         //throw new Exception();
     }
 
